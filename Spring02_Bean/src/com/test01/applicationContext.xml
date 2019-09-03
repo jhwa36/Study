@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="apple" class="com.test01.MessageBeanImpl"></bean>
+	<bean id="watermelon" class="com.test01.MessageBeanImpl">
+		<constructor-arg>
+			<value>watermelon</value>
+		</constructor-arg>
+		<constructor-arg value="15000"></constructor-arg>
+		
+		<!-- 
+		<constructor-arg> : 우리 new 연산자 써서 객체 생성할 때 아규먼트 넣어주듯이
+							여기서는 이렇게 넣는다.
+		
+		 -->
+	</bean>
+	
+	<bean id="jadu" class="com.test01.MessageBeanImpl">
+		<constructor-arg value="3500" index="1"></constructor-arg>
+		<constructor-arg value="jadu" index="0"></constructor-arg>
+		<!-- 
+			parameter를 2개 받게 해놨기 때문에 2개 넣어줘야 하지만
+			index를 주면 순서를 바꿔도 상관 없다. 
+		 -->
+	</bean>
+	
+</beans>

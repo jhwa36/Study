@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id ="service" class="com.test03.UserServiceImpl"></bean>
+	
+	<bean id="today" class="java.util.Date"></bean>
+  	<bean id ="userdto" class="com.test03.UserDto">
+  		<constructor-arg name="name" value="홍길동"></constructor-arg>
+  		<property name="myDate" ref="today"></property>
+  		<!-- property : 해당 이름의 setter를 호출한다. -->
+  	</bean>
+  	
+  	<!--  -->
+  	
+  	<bean id ="birth" class="java.text.SimpleDateFormat">
+ 		<constructor-arg>
+ 			 <value>yyyy-MM-dd</value>
+ 		</constructor-arg>
+ 	</bean>
+	<bean id ="birthdto" class="com.test03.UserDto">
+		<constructor-arg value="EEE"></constructor-arg>
+		<property name="myDate">
+			<bean factory-bean="birth" factory-method="parse">
+			<constructor-arg value="2019-12-25"></constructor-arg>			
+			</bean>
+		</property>
+	</bean>
+ 	
+	<bean id="christmas" class="java.util.Date">
+		<constructor-arg name="year" value="119"></constructor-arg>
+		<constructor-arg name="month" value="11"></constructor-arg>
+		<constructor-arg name="date" value="25"></constructor-arg>
+	</bean>
+	<bean id ="dto" class="com.test03.UserDto">
+		<constructor-arg value="QQQQQQ"></constructor-arg>
+		<property name="myDate" ref="christmas"></property>
+	</bean>
+	
+<!-- 	<bean id ="" class=""></bean>
+ --> 	
+
+</beans>
