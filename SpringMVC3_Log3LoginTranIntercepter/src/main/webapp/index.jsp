@@ -9,7 +9,7 @@
 <body>
 	<a href="loginform.do">login</a>
 	
-	<!-- <h1><a href="list.do">list</a></h1> -->
+	 <h1><a href="list.do">list</a></h1> 
 	
 	<a href="test.do">transaction test</a>
 </body>

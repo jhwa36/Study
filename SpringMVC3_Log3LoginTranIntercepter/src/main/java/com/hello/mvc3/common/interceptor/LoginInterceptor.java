@@ -25,7 +25,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		// session에 로그인하면 dto에 담기는데 null이라면
 		if(request.getSession().getAttribute("dto") == null) {
-			response.sendRedirect("/mvc03");
+			response.sendRedirect("/mvc3");
 			return false;
 		}
 		
