@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bar" class="com.test01.Bar">
+	</bean>
+	
+	<bean id="date" class="java.util.Date"></bean>
+<!-- 	<bean id="tomorrow" class="java.util.Date">
+		<constructor-arg value="119"></constructor-arg>
+		<constructor-arg value="08"></constructor-arg>
+		<constructor-arg value="23"></constructor-arg>
+	</bean>
+ -->
+ 	<bean id="tomorrow" class="com.test01.Tomorrow" factory-method="getTomorrow"></bean> 
+ 
+ 
+	<bean id="foo" class="com.test01.Foo" lazy-init="true">
+	<!-- 1. Foo(Date date) 생성자 호출 -->
+		<constructor-arg ref="date"></constructor-arg>
+		
+		<!-- 2.setBar() 호출  -->
+		<property name="bar" ref="bar"></property>
+		
+		<!-- 3.setDate()호출 : 내일 날짜 -->
+		<property name="date" ref="tomorrow"></property>
+		
+		<!-- 4.setNum()호출 -->
+		<property name="num">
+			<value type="short">100</value>
+		</property>
+		
+		<!-- 5.setStudent() 호출 -->
+		<property name="student">
+			<array>
+				<!-- array 안에 타입 이것저것 많이 들어갈 수 있다 -->
+				<value>a</value>
+				<value>r</value>
+				<value>r</value>
+				<value>a</value>
+				<value>y</value>
+			</array>
+		</property>
+		
+		<!-- 6.setInfo() 호출 -->
+		<property name="info">
+			<list value-type="java.lang.String">
+				<value>l</value>
+				<value>i</value>
+				<value>s</value>
+				<value>t</value>
+			</list>
+		</property>
+		
+		<!-- 7.setSeason() 호출
+		1:봄		2:여름	3.가을	4:겨울 -->
+		<property name="season">
+			<map key-type="java.lang.String" value-type="java.lang.String">
+				<entry>
+					<key>			<!-- key에 바로 들어갈 수 있는 타입이 정해져 있기 때문에 그냥 int형을 넣으려면 value 만들고 넣어야 함 -->
+						 <value>1</value>
+					</key>
+					<value>봄</value>
+				</entry>
+				<entry key="2" value="여름"></entry>
+				<entry key="3" value="가을"></entry>
+				<entry key="4" value="겨울"></entry>
+			</map>
+		</property>
+		
+		<!-- 8.setScore 호출 
+			하나는 innerbean으로 하나는 밖에서 만들고 ref로 땡겨라
+		-->
+		<property name="score">
+			<list value-type="com.test01.Score">
+				<bean class="com.test01.Score">			<!-- inner bean -->
+					<constructor-arg value="A"></constructor-arg>
+					<constructor-arg value="80"></constructor-arg>
+					<constructor-arg value="70"></constructor-arg>
+					<constructor-arg value="66"></constructor-arg>
+				</bean>
+				<ref bean="scorebean"/>
+			</list>
+		</property>
+		
+	</bean>
+	
+	<bean id="scorebean" class="com.test01.Score">
+		<property name="name" value="B"></property>
+		<property name="kor" value="24"></property>
+		<property name="eng" value="63"></property>
+		<property name="math" value="21"></property>
+	</bean>
+	
+</beans>
