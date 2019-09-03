@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- MessageBeanEn bean01 = new MessageBeanEn();요 형태를 아래의 형태로 써놨다. 생각하면 된다. -->
+	<bean id = "bean01" class="com.test03.MessageBeanEn"></bean> <!-- bean : 걍 객체라고 알아들으면 됨. -->
+	<bean id = "bean02" class="com.test03.MessageBeanKo"></bean>
+
+</beans>
