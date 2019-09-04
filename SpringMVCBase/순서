@@ -1,0 +1,42 @@
+1. web.xml 2.5 -> 4.0 (dynamic web project 만들어서)
+2. pom.xml - java 1.6 -> 1.8
+			- springframework 3.1.1 -> ? 5.1.9?
+			- servlet-api 2.5 -> 4.0.1 -> javax.servlet-api 
+			- jsp-api 2.1 -> 2.3.3 javax.servlet.jsp-api
+			- maven-compiler-plugin source 1.6 / target 1.6 -> source 1.8 / target 1.8
+3. project facet - java 1.6 -> 1.8
+				- web-module 2.5 -> 4.0
+				
+maven update - 프로젝트 우클릭 maven -> update project -> offline, force update 체크 
+
+---------------------------(mybatis)---------------------------
+5. pom.xml - ojdbc6, mybatis, mybatis-spring, commons-dbcp, spring-orm
+6. WEB-INF/spring/sqls/*.sql
+7. dto, dao, biz
+8. src/main/resources/sqls/mapper.xml
+9. WEB-INF/spring/sqls/config.xml
+10. src/main/resources/properties/db.properties
+11. applicationContext.xml
+	설정하기!!!!!!!!
+		<bean id="dataSource"></bean>
+		<bean id="sqlSession"></bean>
+		<bean id="sqlSessionTemplate"></bean>
+		
+---------------------------(aop)
+12. pom.xml - aspectjweaver, aspectjrt, 
+13. ~.common.aop.LogAop 패키지 / 클래스 생성
+14. aop-context.xml
+15. web.xml에 추가
+16. log4j.xml 설정 바꿔주었음 trace로? java의 sql org.mybaris
+
+---------------------------(filter)
+17. ~.common.filter.LogFilter (impl javax.servlet.Filter)
+18. web.xml
+
+---------------------------(interceptor)
+19. ~.common.interceptor.MyInterceptor (impl HandlerInterceptor)
+20. servlet-context.xml
+---------------------------(transaction)
+
+
+
