@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 public class LogAop {
 
 	
-	@Before("execution(public * com.upgrade.mvc.dao.*Dao*.(..)")
+	@Before("execution(public * com.upgrade.mvc.dao.*Dao*.*(..))")
 	public void before(JoinPoint join) {
 		Logger logger = LoggerFactory.getLogger(join.getTarget()+"");
 		logger.info("----------logger start----------");
 	}
 	
-	@After("execution(public * com.upgrade.mvc.dao.*Dao*.(..)")
+	@After("execution(public * com.upgrade.mvc.dao.*Dao*.*(..))")
 	public void after(JoinPoint join) {
 		Logger logger = LoggerFactory.getLogger(join.getTarget()+"");
 		logger.info("----------logger end----------");

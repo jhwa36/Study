@@ -19,9 +19,12 @@ public class LogFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		logger.info(((HttpServletRequest)request).getRequestURI());
 		
+		HttpServletRequest req = (HttpServletRequest) request;
+		req.setCharacterEncoding("UTF-8");
+		
+		logger.info(((HttpServletRequest)request).getRequestURI()+"누구냐");
 		chain.doFilter(request, response);
 	}
-
+	
 }
