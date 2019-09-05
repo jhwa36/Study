@@ -24,9 +24,7 @@ public class LogFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		req.setCharacterEncoding("UTF-8");
 		
-		logger.info(((HttpServletRequest)request).getRequestURI());
-		logger.info("[로그필터]");
+		logger.info(((HttpServletRequest)request).getRequestURI()+"[로그필터]");
 		chain.doFilter(request, response);
 	}
-	
 }
