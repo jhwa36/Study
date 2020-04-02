@@ -15,16 +15,13 @@
 <meta charset="UTF-8">
 <title>Jsp 게시판 웹 사이트</title>
 </head>
-<!-- 하나라도 null값이 있을 경우의 수 체크 
-	join 변수에 각각의 변수들을 입력받아 하나의 user라는 인스턴스가 join함수를 사용하도록 매개변수가로 들어간다.
-	
-	데이터베이스 오류가 발생할 경우 = 해당 아이디가 존재하는경우 밖에 없다.
-	userID에 primary key를 주었기에 단 하나만이 존재하는 아이디가 되어야한다.
-	동일한 아이디가 있을경우 에러가 발생한다.
-	
-	result -1이 아닌경우는 전부 다 회원가입이 이루어진 경우이다.
-	login 되었을경우 main.jsp로 바로 화면을 이동시켜준다.
-	
+<!-- 
+	userID == null 로그인이 안되어 있다면 로그인하라는 경고창띄운다.
+	로그인 했을 경우에 글 작성할 수 있게 해주고,
+	글 제목이나 글의 내용을 입력하지 않은 경우 오류 발생
+ 	if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null ){
+ 	
+	result == -1인경우 데이터베이스 오류가 발생한 것
 -->
 <body>
 	<%
@@ -47,7 +44,7 @@
 							script.println("</script>");
 						}else{
 							BbsDao bbsDao = new BbsDao();
-							int result = bbsDao.write(bbs.getBbsTitle(), userID,bbs.getBbsContent());
+							int result = bbsDao.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
 							if (result == -1){
 								PrintWriter script = response.getWriter();
 								script.println("<script>");
