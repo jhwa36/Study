@@ -9,6 +9,10 @@ public class Bbs {
 	private String bbsContent;
 	private int bbsAvailable;
 
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	public Bbs() {
 		
 	}
