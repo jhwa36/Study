@@ -109,6 +109,11 @@
 					}
 					%>
 				</tbody>
+				<!-- 페이징 설명 
+					https://www.youtube.com/watch?v=Q-TzxXw2jQY&list=PLRx0vPvlEmdAZv_okJzox5wj2gG_fNh_6&index=11
+				
+				
+				-->
 			</table>
 			<%
 				if(pageNumber != 1){
