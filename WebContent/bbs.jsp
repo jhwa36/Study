@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="bbs.BbsDao"%>
+<%@ page import="bbs.Bbs"%>
+<%@ page import="java.util.ArrayList"%> <!--  게시판 목록을 츌룍허기 위해 필요함 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,12 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>Jsp 게시판 웹 사이트</title>
 </head>
+<style type="text/css">
+	a, a:hover {
+		color: #000000;
+		text-decoration: none;
+}
+</style>
 <body>
 	<!-- 로그인 된 사람들은 로그인 정보를 담아줄 수 있도록 구현.
 	현재 session 존재하는 사람이라면 ID값을 그대로 받아 관리해준다. -->
@@ -16,6 +25,10 @@
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1;
+		if(request.getParameter("pageNumber") != null){
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%>
 	<!-- nav = 하나의 웹 사이트의 전반적인 구성을 보여주는 역할 -->
@@ -81,14 +94,34 @@
 					</tr>
 				</thead>
 				<tbody>
+				<%
+					BbsDao bbsDao = new BbsDao();
+					ArrayList<Bbs> list = bbsDao.getList(pageNumber);
+					for(int i=0; i < list.size(); i++){
+				%>
 					<tr>
-						<td>1</td>
-						<td>안녕하세요</td>
-						<td>홍길동</td>
-						<td>2020-03-27</td>
+						<td><%=list.get(i).getBbsID() %></td>
+						<td><a href="view.jsp?bbsID=<%= list.get(i).getBbsID() %>"> <%=list.get(i).getBbsTitle() %></a></td>
+						<td><%=list.get(i).getUserID() %></td>
+						<td><%=list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13) + " 시  "+ list.get(i).getBbsDate().substring(14, 16) + " 분 " %></td>
 					</tr>
+					<%
+					}
+					%>
 				</tbody>
 			</table>
+			<%
+				if(pageNumber != 1){
+				
+			%>
+					<a href="bbs.jsp?pageNumber=<%=pageNumber - 1 %>" class="btn btn-sucess btn-arraw-left">이전</a>
+			<%
+				}if(bbsDao.nextPage(pageNumber +1 )){
+			%>
+					<a href="bbs.jsp?pageNumber=<%=pageNumber + 1 %>" class="btn btn-sucess btn-arraw-left">다음</a>
+			<%
+				}
+			%>
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
